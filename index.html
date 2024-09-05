@@ -1,0 +1,85 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script>
+        function validarLogin() {
+            // Obter os valores dos campos de email e senha
+            var email = document.getElementById("email").value;
+            var senha = document.getElementById("senha").value;
+
+            // Verificar se o email e a senha correspondem aos permitidos
+            if (email === "SamuelCarvalho" && senha === "Muca234") {
+                // Redirecionar para a página index.html
+                window.location.href = "inpex.html";
+            } else {
+                alert("Email ou senha incorretos.");
+            }
+        }
+    </script>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+            background: linear-gradient(-45deg, #00fff0, #000fff, #0bf0d1);
+            border-radius: 10px;
+            width: 100%;
+            height: 570px;
+
+
+
+        }
+        
+        h1 {
+            text-align: center;
+            font-family:  'Comic Sans MS', cursive, sans-serif;
+            font-size: 48px;
+            color: #2200e2;
+            text-align: center;
+            font-weight: normal;
+        }
+        div{
+
+         background-color: aquamarine; 
+         border-radius: 10px;  
+         width: 500px;
+         height: 500px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form>
+        <div>
+            <h1>Formulário de Login</h1>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="senha">Senha:</label><br>
+            <input type="password" id="senha" name="senha" required><br><br>
+
+            <!-- Ao clicar no botão, chama a função validarLogin() -->
+            <input type="button" value="Entrar" onclick="validarLogin()">
+        <h1>Conheça meu Progresso!!!</h1>
+        </div>
+    </form>
+
+</body>
+
+</html>

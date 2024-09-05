@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria de Imagens</title>
+    <style>
+        .gallery {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            text-align: center;
+            flex-direction: row;
+            background-color: grey;
+            width: 600px;
+            height: 600px;
+            border-radius: 10px;
+            
+        }
+        .thumbnail {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .main-image {
+            max-width: 400px;
+            max-height: 400px;
+            display: flex;
+            align-items: last baseline;
+            justify-content: center;
+            flex-direction: row;
+        }
+        h1{
+            text-align: center;
+            font-family:  'Comic Sans MS', cursive, sans-serif;
+            font-size: 48px;
+            color: #000000;
+            text-align: center;
+            font-weight: normal;
+        
+        }
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <div class="gallery">
+        <h1>Galeria de Imagens do Samuel</h1>
+        <img src="download.jpg" alt="" class="thumbnail" onclick="mostrarImagem('download.jpg')">
+       <img src="download(1).jpg" alt="" class="thumbnail" onclick="mostrarImagem('download(1).jpg')">
+        <img src="download(2).jpg" alt="" class="thumbnail" onclick="mostrarImagem('download(2).jpg')">
+    <div>
+        <img src="download.jpg" alt="Imagem Principal" id="imagemPrincipal">
+    </div>
+    </div>
+    <script>
+        function mostrarImagem(src) {
+            var imagemPrincipal = document.getElementById("imagemPrincipal");
+            if (imagemPrincipal) {
+                imagemPrincipal.src = src;
+            } else {
+                console.error("Elemento 'imagemPrincipal' não encontrado.");
+            }
+        }
+    </script>
+</body>
+</html>

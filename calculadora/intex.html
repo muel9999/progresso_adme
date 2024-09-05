@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+  <div class="estilização">
+    <input type="number" id="primeironumero">
+    <input type="number" id="segundonumero">
+    <div class="botoes">
+    <button id="soma" onclick="calcular('soma')"> somar</button>
+    <button id="subtrair" onclick="calcular('subtrair')">subtrair</button>
+    <br>
+    <button id="multiplicar" onclick="calcular('multiplicar')">multiplicar</button>
+    <button id="dividir" onclick="calcular('dividir')">dividir</button>
+    <button id="subtrair2" onclick="calcular('nada')">limpar</button>
+    </div>
+    <div><h2>Resultado:</h2></div>
+    <div id="resultado"><h2>?</h2></div>
+
+    
+  </div>
+    <script>
+  function calcular(operacao){
+    var primeiro = Number( document.getElementById("primeironumero").value);
+    var segundo = Number( document.getElementById("segundonumero").value);
+    var resultado = 0
+   
+   if(operacao=="soma"){
+    resultado = primeiro + segundo;
+   }
+   if(operacao == "subtrair"){
+    resultado = primeiro - segundo
+   }
+   if(operacao == "multiplicar"){
+    resultado = primeiro * segundo
+   }
+   if(operacao == 'dividir'){
+    resultado = primeiro / segundo
+   }
+
+    document.getElementById("resultado").innerText = resultado;
+  }   
+
+
+    </script>
+
+</body>
+</html>

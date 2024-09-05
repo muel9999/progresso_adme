@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bíblia</title>
+    <link rel="stylesheet" href="index.js">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+
+            width: 100%;
+            height: 100%;
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        p {
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            text-align: justify;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Bíblia</h1>
+        <input type="text" id="livro" placeholder="pesquise o nome do livro">
+        <input type="number" id="capitulo" placeholder="pesquise o capítulo do livro">
+        <br>
+        <button onclick="buscarLivro()">Procurar</button>
+        <ul id="lista_biblia">
+        </ul>
+    </div>
+
+    <script>
+        var lista_biblia = [
+            {
+                livro: "Salmos",
+                capitulo: 1,
+                versos: [
+                    {
+                        numero: 1,
+                        texto: "Bem-aventurado o homem que não anda segundo o conselho dos ímpios, nem se detém no caminho dos pecadores, nem se assenta na roda dos escarnecedores."
+                    },
+                    {
+                        numero: 2,
+                        texto: "Antes tem o seu prazer na lei do Senhor, e na sua lei medita de dia e de noite."
+                    },
+                    {
+                        numero: 3,
+                        texto: "Pois será como a árvore plantada junto a ribeiros de águas, a qual dá o seu fruto no seu tempo; as suas folhas não cairão, e tudo quanto fizer prosperará."
+                    },
+                    {
+                        numero: 4,
+                        texto: "Não são assim os ímpios; mas são como a moinha que o vento espalha."
+                    },
+                    {
+                        numero: 5,
+                        texto: "Por isso os ímpios não subsistirão no juízo, nem os pecadores na congregação dos justos."
+                    },
+                    {
+                        numero: 6,
+                        texto: "Porque o Senhor conhece o caminho dos justos; porém o caminho dos ímpios perecerá."
+                    }
+                ]
+            },
+            {
+                livro: "Salmos",
+                capitulo: 2,
+                versos: [
+                    {
+                        numero: 1,
+                        texto: "Por que se amotinam os gentios, e os povos imaginam coisas vàs?"
+                    },
+                    {
+                        numero: 2,
+                        texto: "Os reis da terra se levantam e os governos consultam juntamente contra o Senhor e contra o seu ungido, dizendo:"
+                    },
+                    {
+                        numero: 3,
+                        texto: "Rompamos as suas ataduras, e sacudamos de nós as suas cordas."
+                    },
+                    {
+                        numero: 4,
+                        texto: "Aquele que habita nos céus se rirá; o Senhor zombará deles."
+                    },
+                    {
+                        numero: 5,
+                        texto: "Então lhes falará na sua ira, e no seu furor os turbará."
+                    },
+                    {
+                        numero: 6,
+                        texto: "Eu, porém, ungi o meu Rei sobre o meu santo monte de Sião."
+                    },
+                    {
+                        numero: 7,
+                        texto: "Proclamarei o decreto: o Senhor me disse: Tu és meu Filho, eu hoje te gerei."
+                    },
+                    {
+                        numero: 8,
+                        texto: "Pede-me, e eu te darei os gentios por herança, e os fins da terra por tua possessão."
+                    },
+                    {
+                        numero: 9,
+                        texto: "Tu os esmigalharás com uma vara de ferro; tu os despedaçarás como a um vaso de oleiro."
+                    },
+                    {
+                        numero: 10,
+                        texto: "Agora, pois, ó reis, sede prudentes; deixai-vos instruir, juízes da terra."
+                    },
+                    {
+                        numero: 11,
+                        texto: "Servi ao Senhor com temor, e alegrai-vos com tremor."
+                    },
+                    {
+                        numero: 12,
+                        texto: "Beijai o Filho, para que se não ire, e pereçais no caminho, quando em breve se acender a sua ira; bem-aventurados todos aqueles que nele confiam."
+                    }
+                ]
+            },
+            {
+                livro: "Gênesis",
+                capitulo: 1,
+                versos: [
+                    {
+                        numero: 1,
+                        texto: "No princípio criou Deus o céu e a terra."
+                    },
+                    {
+                        numero: 2,
+                        texto: "E a terra era sem forma e vazia; e havia trevas sobre a face do abismo; e o Espírito de Deus se movia sobre a face das águas."
+                    },
+                    {
+                        numero: 3,
+                        texto: "E disse Deus: Haja luz; e houve luz."
+                    },
+                    {
+                        numero: 4,
+                        texto: "E viu Deus que era boa a luz; e fez Deus separação entre a luz e as trevas."
+                    },
+                    {
+                        numero: 5,
+                        texto: "E Deus chamou à luz Dia; e às trevas chamou Noite. E foi a tarde e a manhã, o dia primeiro."
+                    },
+                    {
+                        numero: 6,
+                        texto: "E disse Deus: Haja uma expansão no meio das águas, e haja separação entre águas e águas."
+                    },
+                    {
+                        numero: 7,
+                        texto: "E fez Deus a expansão, e fez separação entre as águas que estavam debaixo da expansão e as águas que estavam sobre a expansão; e assim foi."
+                    },
+                    {
+                        numero: 8,
+                        texto: "E chamou Deus à expansão Céus, e foi a tarde e a manhã, o dia segundo."
+                    },
+                    {
+                        numero: 9,
+                        texto: "E disse Deus: Ajuntem-se as águas debaixo dos céus num lugar; e apareça a porção seca; e assim foi."
+                    },
+                    {
+                        numero: 10,
+                        texto: "E chamou Deus à porção seca Terra; e ao ajuntamento das águas chamou Mares; e viu Deus que era bom."
+                    },
+                    {
+                        numero: 11,
+                        texto: "E disse Deus: Produza a terra erva verde, erva que dê semente, árvore frutífera que dê fruto segundo a sua espécie, cuja semente está nela sobre a terra; e assim foi."
+                    },
+                    {
+                        numero: 12,
+                        texto: "E a terra produziu erva, erva dando semente conforme a sua espécie, e a árvore frutífera, cuja semente está nela conforme a sua espécie; e viu Deus que era bom."
+                    },
+                    {
+                        numero: 13,
+                        texto: "E foi a tarde e a manhã, o dia terceiro."
+                    },
+                    {
+                        numero: 14,
+                        texto: "E disse Deus: Haja luminares na expansão dos céus, para haver separação entre o dia e a noite; e sejam eles para sinais e para tempos determinados e para dias e anos."
+                    },
+                    {
+                        numero: 15,
+                        texto: "E sejam para luminares na expansão dos céus, para iluminar a terra; e assim foi."
+                    },
+                    {
+                        numero: 16,
+                        texto: "E fez Deus os dois grandes luminares: o luminar maior para governar o dia, e o luminar menor para governar a noite; e fez as estrelas."
+                    },
+                    {
+                        numero: 17,
+                        texto: "E Deus os pôs na expansão dos céus para iluminar a terra,"
+                    },
+                    {
+                        numero: 18,
+                        texto: "E para governar o dia e a noite, e para fazer separação entre a luz e as trevas; e viu Deus que era bom."
+                    },
+                    {
+                        numero: 19,
+                        texto: "E foi a tarde e a manhã, o dia quarto."
+                    },
+                    {
+                        numero: 20,
+                        texto: "E disse Deus: Produzam as águas abundantemente répteis de alma vivente; e voem as aves sobre a face da expansão dos céus."
+                    },
+                    {
+                        numero: 21,
+                        texto: "E Deus criou as grandes baleias, e todo o réptil de alma vivente que as águas abundantemente produziram conforme as suas espécies; e toda a ave de asas conforme a sua espécie; e viu Deus que era bom."
+                    },
+                    {
+                        numero: 22,
+                        texto: "E Deus os abençoou, dizendo: Frutificai e multiplicai-vos, e enchei as águas nos mares; e as aves se multipliquem na terra."
+                    },
+                    {
+                        numero: 23,
+                        texto: "E foi a tarde e a manhã, o dia quinto."
+                    },
+                    {
+                        numero: 24,
+                        texto: "E disse Deus: Produza a terra alma vivente conforme a sua espécie; gado, e répteis e feras da terra conforme a sua espécie; e assim foi."
+                    },
+                    {
+                        numero: 25,
+                        texto: "E fez Deus as feras da terra conforme a sua espécie, e o gado conforme a sua espécie, e todo o réptil da terra conforme a sua espécie; e viu Deus que era bom."
+                    },
+                    {
+                        numero: 26,
+                        texto: "E disse Deus: Façamos o homem à nossa imagem, conforme a nossa semelhança; e domine sobre os peixes do mar, e sobre as aves dos céus, e sobre o gado, e sobre toda a terra, e sobre todo o réptil que se move sobre a terra."
+                    },
+                    {
+                        numero: 27,
+                        texto: "E criou Deus o homem à sua imagem; à imagem de Deus o criou; homem e mulher os criou."
+                    },
+                    {
+                        numero: 28,
+                        texto: "E Deus os abençoou, e Deus lhes disse: Frutificai e multiplicai-vos, e enchei a terra, e sujeitai-a; e dominai sobre os peixes do mar e sobre as aves dos céus, e sobre todo o animal que se move sobre a terra."
+                    },
+                    {
+                        numero: 29,
+                        texto: "E disse Deus: Eis que vos tenho dado toda a erva que dê semente, que está sobre a face de toda a terra; e toda a árvore, em que há fruto que dê semente, ser-vos-á para mantimento."
+                    },
+                    {
+                        numero: 30,
+                        texto: "E a todo o animal da terra, e a toda a ave dos céus, e a todo o réptil da terra, em que há alma vivente, toda a erva verde será para mantimento; e assim foi."
+                    },
+                    {
+                        numero: 31,
+                        texto: "E viu Deus tudo quanto tinha feito, e eis que era muito bom; e foi a tarde e a manhã, o dia sexto."
+                    }
+                ]
+            },
+            {
+                livro: "Gênesis",
+                capitulo: 2,
+                versos: [
+                    {
+                        numero: 1,
+                        texto: "Assim os céus, a terra e todo o seu exército foram acabados."
+                    },
+                    {
+                        numero: 2,
+                        texto: "E havendo Deus acabado no dia sétimo a obra que fizera, descansou no sétimo dia de toda a sua obra, que tinha feito."
+                    },
+                    {
+                        numero: 3,
+                        texto: "E abençoou Deus o dia sétimo, e o santificou; porque nele descansou de toda a sua obra que Deus criara e fizera."
+                    },
+                    {
+                        numero: 4,
+                        texto: "Estas são as origens dos céus e da terra, quando foram criados; no dia em que o Senhor Deus fez a terra e os céus,"
+                    },
+                    {
+                        numero: 5,
+                        texto: "E toda a planta do campo que ainda não estava na terra, e toda a erva do campo que ainda não brotava; porque ainda o Senhor Deus não tinha feito chover sobre a terra, e não havia homem para lavrar a terra."
+                    },
+                    {
+                        numero: 6,
+                        texto: "Um vapor, porém, subia da terra, e regava toda a face da terra."
+                    },
+                    {
+                        numero: 7,
+                        texto: "E formou o Senhor Deus o homem do pó da terra, e soprou em suas narinas o fôlego da vida; e o homem foi feito alma vivente."
+                    },
+                    {
+                        numero: 8,
+                        texto: "E plantou o Senhor Deus um jardim no Éden, do lado oriental; e pôs ali o homem que tinha formado."
+                    },
+                    {
+                        numero: 9,
+                        texto: "E o Senhor Deus fez brotar da terra toda a árvore agradável à vista, e boa para comida; e a árvore da vida no meio do jardim, e a árvore do conhecimento do bem e do mal."
+                    },
+                    {
+                        numero: 10,
+                        texto: "E saía um rio do Éden para regar o jardim; e dali se dividia e se tornava em quatro braços."
+                    },
+                    {
+                        numero: 11,
+                        texto: "O nome do primeiro é Pisom; este é o que rodeia toda a terra de Havilá, onde há ouro."
+                    },
+                    {
+                        numero: 12,
+                        texto: "E o ouro dessa terra é bom; ali há o bdélio, e a pedra sardônica."
+                    },
+                    {
+                        numero: 13,
+                        texto: "E o nome do segundo rio é Giom; este é o que rodeia toda a terra de Cuxe."
+                    },
+                    {
+                        numero: 14,
+                        texto: "E o nome do terceiro rio é Tigre; este é o que vai para o lado oriental da Assíria; e o quarto rio é o Eufrates."
+                    },
+                    {
+                        numero: 15,
+                        texto: "E tomou o Senhor Deus o homem, e o pôs no jardim do Éden para o lavrar e o guardar."
+                    },
+                    {
+                        numero: 16,
+                        texto: "E ordenou o Senhor Deus ao homem, dizendo: De toda a árvore do jardim comerás livremente,"
+                    },
+                    {
+                        numero: 17,
+                        texto: "Mas da árvore do conhecimento do bem e do mal, dela não comerás; porque no dia em que dela comeres, certamente morrerás."
+                    },
+                    {
+                        numero: 18,
+                        texto: "E disse o Senhor Deus: Não é bom que o homem esteja só; far-lhe-ei uma ajudadora idônea para ele."
+                    },
+                    {
+                        numero: 19,
+                        texto: "Havendo, pois, o Senhor Deus formado da terra todo o animal do campo, e toda a ave dos céus, os trouxe a Adão, para este ver como lhes chamaria; e tudo o que Adão chamou a toda a alma vivente, isso foi o seu nome."
+                    },
+                    {
+                        numero: 20,
+                        texto: "E Adão pôs os nomes a todo o gado, e às aves dos céus, e a todo o animal do campo; mas para o homem não se achava ajudadora idônea."
+                    },
+                    {
+                        numero: 21,
+                        texto: "Então o Senhor Deus fez cair um sono pesado sobre Adão, e este adormeceu; e tomou uma das suas costelas, e cerrou a carne em seu lugar;"
+                    },
+                    {
+                        numero: 22,
+                        texto: "E da costela que o Senhor Deus tomou do homem, formou uma mulher, e trouxe-a a Adão."
+                    },
+                    {
+                        numero: 23,
+                        texto: "E disse Adão: Esta é agora osso dos meus ossos, e carne da minha carne; esta será chamada mulher, porquanto do homem foi tomada."
+                    },
+                    {
+                        numero: 24,
+                        texto: "Portanto deixará o homem o seu pai e a sua mãe, e apegar-se-á à sua mulher, e serão ambos uma carne."
+                    },
+                    {
+                        numero: 25,
+                        texto: "E ambos estavam nus, o homem e a sua mulher; e não se envergonhavam."
+                    }
+                ]
+            }
+        ]
+        
+
+    </script>
+</body>
+
+</html>

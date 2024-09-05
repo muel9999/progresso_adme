@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon (6).ico" type="image/x-icon">
+    <title>Pesquisa de carros</title>
+    <style>
+        body {
+            width: 90%;
+            height: 100%;
+            background: linear-gradient(-45deg, #000fff, #0bf0d1, #000fff);
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            margin: 0px;
+            opacity: 10px;
+        }
+
+        .container {
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            top: 180px;
+            left: 500px -500px;
+            background: linear-gradient(-45deg, #0bf0d1, #000fff, #0bf0d1);
+            width: 400px;
+            height: 300px;
+            border-radius: 45px;
+            padding: 10px;
+            box-shadow: 0px 0px 30px #000000;
+        }
+
+        input {
+            border-radius: 10px;
+        }
+
+        #info {
+            background-color: #cccece;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            border-radius: 10px;
+            box-sizing: border-box;
+            width: 200px;
+        }
+
+        input {
+            margin: 10px;
+        }
+
+
+
+
+
+
+
+
+        ul {
+            padding: 0px;
+            text-align: center;
+            width: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 style="font-family: sans-serif; justify-self: start;"> Pesquisar Carros</h1>
+        <h2>Pesquise o nome de um carro</h2>
+        <input id="input" type="text">
+        <button id="btn" onclick="Pesquisar()">Pesquisar</button>
+        <ul id="info"></ul>
+    </div>
+    <script>
+        let lista = [
+            {
+                nome: "Fusca"
+            },
+            {
+                nome: "Chevrolet"
+            },
+            {
+                nome: "Camaro"
+            },
+            {
+                nome: "Corola"
+            },
+            {
+                nome: "Uno"
+            },
+            {
+                nome: "Ferrari"
+            },
+            {
+                nome: "Lamborghini"
+            },
+            {
+                nome: "Toyota"
+            },
+            {
+                nome: "Volkswagen"
+            },
+            {
+                nome: "Kombi"
+            },
+            {
+                nome: "Honda"
+            },
+            {
+                nome: "Hyundai"
+            }
+        ]
+
+        function Pesquisar() {
+
+            var InputCarro = document.getElementById("input").value;
+            var nome_encontrado = null
+            var listaUl = document.getElementById("info");
+
+            for (let posicao = 0; posicao < lista.length; posicao = posicao + 1) {
+
+                if (InputCarro == lista[posicao].nome) {
+                    nome_encontrado = lista[posicao]
+
+                }
+
+            }
+
+
+            if (nome_encontrado != null) {
+
+                const Informacao = ` 
+                 <p><b>Nome do Carro:</b> ${nome_encontrado.nome} </p>
+                 `
+                listaUl.innerHTML = Informacao;
+            }
+            else {
+                listaUl.innerText = "Esse carro não foi encontrado!"
+            }
+        }
+
+
+
+    </script>
+</body>
+
+</html>
