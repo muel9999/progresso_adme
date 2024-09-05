@@ -1,0 +1,20 @@
+.input{
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+    
+    }
+    
+    .estilização{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: aqua;
+    width: 900px;
+    }
+    button{
+        width: 70px;
+        height: 70px;
+    }
+    
